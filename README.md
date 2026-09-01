@@ -1,4 +1,4 @@
-# Lab---1
+# Lab
 
 A C programming project repository.
 
