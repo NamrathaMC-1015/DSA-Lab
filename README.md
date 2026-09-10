@@ -1,4 +1,4 @@
-# Lab
+#DSA Lab
 
 A C programming project repository.
 
