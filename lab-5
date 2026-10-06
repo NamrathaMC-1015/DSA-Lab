@@ -1,0 +1,133 @@
+---> Evaluation of a Postfix expression
+
+#include <stdio.h>
+#include<ctype.h>
+#define MAX 100
+
+int stack[MAX];
+int top=-1;
+
+int main() {
+    char str[MAX];
+    int result,a,b;
+
+    printf("enter postfix expression\n");
+    scanf("%s",str);
+    
+    for(int i=0;str[i]!='\0';i++){
+        if(isdigit(str[i]))
+        stack[++top]=str[i]-'0';
+        
+        else{
+            b=stack[top--];
+            a=stack[top--];
+            
+            switch(str[i]){
+                case '+':
+                result=a+b;
+                break;
+                
+                case '-':
+                result=a-b;
+                break;
+                
+                case '*':
+                result=a*b;
+                break;
+                
+                case '/':
+                result=a/b;
+                break;
+            }
+        stack[++top]=result;
+    }
+}
+printf("result=%d",result);
+}
+
+---> 150. Evaluate Reverse Polish Notation[LEETCODE]
+
+int evalRPN(char** str, int tokensSize) {
+    
+int result,a,b;
+int stack[tokensSize];
+int top=-1;
+if (tokensSize==1){
+        int c=atoi(str[0]);
+        return c;
+    }
+ for(int i=0;i<tokensSize;i++){
+    if (isdigit(str[i][0]) || (str[i][0]=='-'&& isdigit(str[i][1]))){
+        stack[++top]=atoi(str[i]);
+    }
+        else{
+            b=stack[top--];
+            a=stack[top--];
+            
+            switch(str[i][0]){
+                case '+':
+                result=a+b;
+                break;
+                
+                case '-':
+                result=a-b;
+                break;
+                
+                case '*':
+                result=a*b;
+                break;
+                
+                case '/':
+                result=a/b;
+                break;
+            }
+        stack[++top]=result;
+        }
+    }
+        return result;
+    }
+
+---> Postfix Evaluation[GeeksForGeeks]
+
+int evaluatePostfix(char* str[], int size) {
+    
+    int result,a,b;
+    int stack[size];
+    int top=-1;
+    if (size==1){
+            int c=atoi(str[0]);
+            return c;
+        }
+     for(int i=0;i<size;i++){
+        if (isdigit(str[i][0]) || (str[i][0]=='-'&& isdigit(str[i][1]))){
+                stack[++top]=atoi(str[i]);}
+            else{
+                b=stack[top--];
+                a=stack[top--];
+
+                switch(str[i][0]){
+                    case '+':
+                    result=a+b;
+                    break;
+
+                    case '-':
+                    result=a-b;
+                    break;
+
+                    case '*':
+                    result=a*b;
+                    break;
+
+                    case '/':
+                    result=floor((double)a/b);
+                    break;
+                    
+                    case '^':
+                    result=pow(a,b);
+                    break;
+                }
+            stack[++top]=result;
+            }
+        }
+            return result;
+        }
